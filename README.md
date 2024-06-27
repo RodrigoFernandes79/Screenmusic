@@ -1,27 +1,25 @@
 ![thumbnail-Desafio Java](https://github.com/jacqueline-oliveira/3355-java-desafio/assets/66698429/4b068d55-5cfc-480c-b94f-7d48b3c91eb3)
 
-# Desafio
+# Challenge
 
 
-Vamos implementar uma aplicação para armazenar dados de nossos artistas e músicas preferidos em um banco de dados relacional, podendo buscar informações por artistas e consultar dados sobre os mesmos através de integração com a API do ChatGPT.
-
-- Você precisará de uma classe Artista, com os dados para representar o mesmo;
-- Será necessário também uma classe específica para representar as músicas;
-- Para o artista, pode praticar a implementação de *enum*, para definir o tipo do artista, por exemplo: solo, dupla ou banda;
-- Lembre-se de criar o projeto através do site do [Spring Initializr](https://start.spring.io/), onde já é possível adicionar as dependências do Spring Data JPA e do PostgreSQL;
-- Crie uma classe principal com o menu, com as opções desejadas, como: cadastrar artista, cadastrar música, pesquisar músicar por artistas, etc;
-- Lembre-se de estender o CommandLineRunner na classe do Spring, sobrescrevendo o método *run* para chamar o menu criado.
-
-
-
-## 🔨 Objetivos do projeto
-
-- O objetivo do projeto é praticar a modelagem de classes e relacionamentos utilizando o Spring Data JPA;
-- É importante descrever e implementar corretamente a relação entre Artista e Música, visto que um artista pode estar associado a mais de uma música;
-- Uma música só deve ser salva no banco de dados, caso o Artista tenha sido previamente cadastrado;
-- Praticaremos *derived queries* e *JPQL* para verificar se o artista já está cadastrado e buscar músicas por um determinado artista;
-- Faremos a integração com a API do ChatGPT para buscar informações sobre um determinado artista.
+We are going to implement an application to store data about our favorite artists and songs in a relational database, being able to search for information by artists and query data about them through integration with the ChatGPT Gemini.
+- You will need an Artist class, with the data to represent it;
+- You will also need a specific class to represent the songs;
+- For the artist, you can practice enum implementation, to define the artist type, for example: solo, duo or band;
+- Remember to create the project through the [Spring Initializr] website (https:start.spring.io), where it is now possible to add Spring Data JPA and PostgreSQL dependencies; 
+- Create a main class with the menu, with the desired options, such as: register artist, register music, search for music by artist, etc.; 
+- Remember to extend the CommandLineRunner in the Spring class, overriding the run method to call the created menu.
 
 
 
-Bom desafio!
+## 🔨 Project objectives
+
+- The objective of the project is to practice modeling classes and relationships using Spring Data JPA; 
+- It is important to correctly describe and implement the relationship between Artist and Song, as an artist can be associated with more than one song; 
+- A song should only be saved in the database if the Artist has been previously registered; 
+- We will practice derived queries and JPQL to check if the artist is already registered and search for songs by a specific artist; 
+- We will integrate with the ChatGPT API to search for information about a specific artist.
+
+
+Good challenge!
