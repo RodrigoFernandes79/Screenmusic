@@ -24,8 +24,7 @@ public class Albums {
 
     }
 
-    public Albums(Long id, String albumName, LocalDate releaseDate, Artist artist) {
-        this.id = id;
+    public Albums(String albumName, LocalDate releaseDate, Artist artist) {
         this.albumName = albumName;
         this.releaseDate = releaseDate;
         this.musics = new ArrayList<>();

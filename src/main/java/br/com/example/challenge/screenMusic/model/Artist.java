@@ -22,8 +22,7 @@ public class Artist {
 
     }
 
-    public Artist(Long id, String name, ArtistType artistType) {
-        this.id = id;
+    public Artist(String name, ArtistType artistType) {
         this.name = name;
         this.artistType = artistType;
         this.albums = new HashSet<>();

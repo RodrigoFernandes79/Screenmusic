@@ -17,8 +17,7 @@ public class Music {
 
     }
 
-    public Music(Long id, String name, Integer durationInMinutes, Albums albums) {
-        this.id = id;
+    public Music(String name, Integer durationInMinutes, Albums albums) {
         this.name = name;
         this.durationInMinutes = durationInMinutes;
         this.albums = albums;
