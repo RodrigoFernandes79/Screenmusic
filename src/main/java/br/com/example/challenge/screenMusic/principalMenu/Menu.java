@@ -6,6 +6,7 @@ import br.com.example.challenge.screenMusic.repository.ArtistRepository;
 import br.com.example.challenge.screenMusic.service.GeminiAPIService;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -30,12 +31,16 @@ public class Menu {
                                         
                     Please, enter one option:
                     1 - Register an artist
+                    2 - Show Artist by Name
                     0 - Quit
                     """);
             var options = typeScanner.nextInt();
             switch (options) {
                 case 1:
                     registerArtist();
+                    break;
+                case 2:
+                    showArtistsByName();
                     break;
                 case 0:
                     System.out.println("The program will finish!!!See you later!");
@@ -48,7 +53,7 @@ public class Menu {
 
     }
 
-    private void registerArtist() {
+    public void registerArtist() {
         while (!quitMenu) {
             System.out.println("Please type the name of artist:");
             typeScanner.nextLine();
@@ -99,4 +104,13 @@ public class Menu {
 
         }
     }
+
+    private void showArtistsByName() {
+        List<Artist> artistOptional = artistRepository.findAll();
+        if (artistOptional.isEmpty()) {
+            System.out.println("No artist was added in the playlist");
+        }
+        artistOptional.forEach(System.out::println);
+    }
 }
+
