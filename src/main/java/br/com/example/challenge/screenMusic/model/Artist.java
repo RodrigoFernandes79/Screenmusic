@@ -18,14 +18,17 @@ public class Artist {
     @Transient // not persist in DataBase for a while
     private Set<Albums> albums;
 
+    private String artistDescription;
+
     public Artist() {
 
     }
 
-    public Artist(String name, ArtistType artistType) {
+    public Artist(String name, ArtistType artistType, String artistDescription) {
         this.name = name;
         this.artistType = artistType;
         this.albums = new HashSet<>();
+        this.artistDescription = artistDescription;
     }
 
     public Long getId() {
@@ -60,11 +63,21 @@ public class Artist {
         this.albums = albums;
     }
 
+    public String getArtistDescription() {
+        return artistDescription;
+    }
+
+    public void setArtistDescription(String artistDescription) {
+        this.artistDescription = artistDescription;
+    }
+
     @Override
     public String toString() {
         return "Artist" +
                 "name: '" + name + '\'' +
                 ", artistType: " + artistType +
-                ", albums: " + albums;
+                ", albums: " + albums +
+                ", Bibliography: " + artistDescription;
+
     }
 }

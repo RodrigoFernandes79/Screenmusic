@@ -3,7 +3,9 @@ package br.com.example.challenge.screenMusic.principalMenu;
 import br.com.example.challenge.screenMusic.model.Artist;
 import br.com.example.challenge.screenMusic.model.ArtistType;
 import br.com.example.challenge.screenMusic.repository.ArtistRepository;
+import br.com.example.challenge.screenMusic.service.GeminiAPIService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
@@ -12,9 +14,11 @@ public class Menu {
     private boolean quitMenu = false;
 
     private ArtistRepository artistRepository;
+    private GeminiAPIService geminiAPIService;
 
-    public Menu(ArtistRepository artistRepository) {
+    public Menu(ArtistRepository artistRepository, GeminiAPIService geminiAPIService) {
         this.artistRepository = artistRepository;
+        this.geminiAPIService = geminiAPIService;
     }
 
     public void showMenu() {
@@ -77,9 +81,15 @@ public class Menu {
             Artist artist = new Artist();
             artist.setArtistType(ArtistType.valueOf(ArtistType.class, typeArtist));
             artist.setName(artistName);
+            try {
+                artist.setArtistDescription(geminiAPIService.textInputGeminiAI(artistName));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             Artist artistObject = artistRepository.save(artist);
-
+            System.out.println(artist);
             System.out.println("Artist " + artistObject.getName() + " saved successfully");
+
             System.out.println();
             System.out.println("Do you want to register another artist? y/n?");
             var registerAgain = typeScanner.next().charAt(0);
