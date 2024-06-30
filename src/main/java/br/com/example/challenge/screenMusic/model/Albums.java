@@ -2,7 +2,6 @@ package br.com.example.challenge.screenMusic.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,19 +13,19 @@ public class Albums {
     private Long id;
     @Column(unique = true)
     private String albumName;
-    private LocalDate releaseDate;
-    @Transient
+    private Integer releaseYear;
+    @OneToMany(mappedBy = "album", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Music> musics;
-    @Transient
+    @ManyToOne
     private Artist artist;
 
     public Albums() {
 
     }
 
-    public Albums(String albumName, LocalDate releaseDate, Artist artist) {
+    public Albums(String albumName, Integer releaseYear, Artist artist) {
         this.albumName = albumName;
-        this.releaseDate = releaseDate;
+        this.releaseYear = releaseYear;
         this.musics = new ArrayList<>();
         this.artist = artist;
     }
@@ -47,12 +46,12 @@ public class Albums {
         this.albumName = albumName;
     }
 
-    public LocalDate getReleaseDate() {
-        return releaseDate;
+    public Integer getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setReleaseYear(Integer releaseYear) {
+        this.releaseYear = releaseYear;
     }
 
     public List<Music> getMusics() {
@@ -75,9 +74,9 @@ public class Albums {
     public String toString() {
         return "Albums{" +
                 "albumName='" + albumName + '\'' +
-                ", releaseDate=" + releaseDate +
+                ", releaseYear=" + releaseYear +
                 ", musics=" + musics +
-                ", artist=" + artist +
+                ", artist=" + artist.getName() +
                 '}';
     }
 }

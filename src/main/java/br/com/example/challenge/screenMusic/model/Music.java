@@ -10,17 +10,17 @@ public class Music {
     private Long id;
     private String name;
     private Integer durationInMinutes;
-    @Transient
-    private Albums albums;
+    @ManyToOne
+    private Albums album;
 
     public Music() {
 
     }
 
-    public Music(String name, Integer durationInMinutes, Albums albums) {
+    public Music(String name, Integer durationInMinutes, Albums album) {
         this.name = name;
         this.durationInMinutes = durationInMinutes;
-        this.albums = albums;
+        this.album = album;
     }
 
     public Long getId() {
@@ -47,12 +47,12 @@ public class Music {
         this.durationInMinutes = durationInMinutes;
     }
 
-    public Albums getAlbums() {
-        return albums;
+    public Albums getAlbum() {
+        return album;
     }
 
-    public void setAlbums(Albums albums) {
-        this.albums = albums;
+    public void setAlbum(Albums album) {
+        this.album = album;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Music {
         return "Music{" +
                 "name='" + name + '\'' +
                 ", durationInMinutes=" + durationInMinutes +
-                ", albums=" + albums +
+                ", albums=" + album.getAlbumName() +
                 '}';
     }
 }

@@ -15,7 +15,7 @@ public class Artist {
     private String name;
     @Enumerated(EnumType.STRING)
     private ArtistType artistType;
-    @Transient // not persist in DataBase for a while
+    @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Albums> albums;
 
     private String artistDescription;
@@ -73,11 +73,10 @@ public class Artist {
 
     @Override
     public String toString() {
-        return "Artist" +
-                "name: '" + name + '\'' +
-                ", artistType: " + artistType +
-                ", albums: " + albums +
-                ", Bibliography: " + artistDescription;
+        return
+                "Artist " + name + '\'' +
+                        " artistType: " + artistType +
+                        " Bibliography: " + artistDescription;
 
     }
 }
