@@ -10,6 +10,7 @@ import br.com.example.challenge.screenMusic.repository.MusicRepository;
 import br.com.example.challenge.screenMusic.service.GeminiAPIService;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -46,6 +47,7 @@ public class Menu {
                     1 - Register an artist
                     2 - Show Artists of your Playlist
                     3 - Register Music
+                    4 - Show Music List
                     0 - Quit
                     """);
             var options = typeScanner.nextInt();
@@ -60,6 +62,9 @@ public class Menu {
                 case 3:
                     registerMusic();
                     break;
+                case 4:
+                    showMusicList();
+                    break;
                 case 0:
                     System.out.println("The program will finish!!!See you later!");
                     quitMenu = true;
@@ -71,7 +76,7 @@ public class Menu {
 
     }
 
-    public void registerArtist() {
+    private void registerArtist() {
         while (!quitMenu) {
             System.out.println("Please type the name of artist:");
             var artistName = typeScanner.nextLine();
@@ -111,7 +116,7 @@ public class Menu {
                 throw new RuntimeException(e);
             }
             Artist artistObject = artistRepository.save(artist);
-            
+
             System.out.println("Artist " + artistObject.getName() + " saved successfully");
 
             System.out.println("Do you want to register another artist? y/n?");
@@ -131,7 +136,7 @@ public class Menu {
         artistOptional.forEach(System.out::println);
     }
 
-    public void registerMusic() {
+    private void registerMusic() {
         System.out.println("Please enter the Artist Name: ");
         var artistName = typeScanner.nextLine();
         Optional<Artist> artistFound = artistRepository
@@ -176,6 +181,16 @@ public class Menu {
             throw new RuntimeException(e);
         }
 
+    }
+
+    private void showMusicList() {
+        List<Music> musics = musicRepository.findAll();
+        musics.stream()
+                .sorted(Comparator.comparing(a -> a.getAlbum().getArtist().getName()))
+                .forEach(m ->
+                        System.out.println("Music: " + m.getName() + " Artist: " + m.getAlbum().getArtist().getName())
+                );
+        System.out.println();
     }
 }
 
