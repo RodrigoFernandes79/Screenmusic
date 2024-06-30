@@ -48,6 +48,7 @@ public class Menu {
                     2 - Show Artists of your Playlist
                     3 - Register Music
                     4 - Show Music List
+                    5 - Find Musics By Artist
                     0 - Quit
                     """);
             var options = typeScanner.nextInt();
@@ -64,6 +65,9 @@ public class Menu {
                     break;
                 case 4:
                     showMusicList();
+                    break;
+                case 5:
+                    findMusicsByArtist();
                     break;
                 case 0:
                     System.out.println("The program will finish!!!See you later!");
@@ -191,6 +195,19 @@ public class Menu {
                         System.out.println("Music: " + m.getName() + " Artist: " + m.getAlbum().getArtist().getName())
                 );
         System.out.println();
+    }
+
+    private void findMusicsByArtist() {
+        System.out.println("Enter the artist name: ");
+        var artistName = typeScanner.nextLine();
+
+        List<Music> music = musicRepository.findByArtistName(artistName);
+        music.stream()
+                .sorted(Comparator.comparing(a -> a.getName()))
+                .forEach(m -> {
+                    System.out.println("Music: " + m.getName() + " Album: " + m.getAlbum().getAlbumName() +
+                            " Duration in minutes: " + m.getDurationInMinutes());
+                });
     }
 }
 
